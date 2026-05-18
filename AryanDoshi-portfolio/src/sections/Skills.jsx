@@ -1,7 +1,7 @@
 import { motion, useMotionValue } from "framer-motion";
 import React, { useRef } from "react";
 import { useEffect } from "react";
-
+import cpimg from "../assets/cpimg.svg";
 export default function Skills() {
 
 const skills = [
@@ -21,6 +21,7 @@ const skills = [
   {icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg", label: "Machine Learning"},
   {icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg", label: "Deep Learning"},
   {icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/codeforces/codeforces-original.svg", label: "Competitive Programming"},
+  // {icon: "cpimg.svg", label: "Competitive Programming"},
   {icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", label: "Tailwind CSS"}
 ]
 const repeated = [...skills, ...skills]; //repeat skills to fill space

@@ -162,18 +162,49 @@ export default function Projects() {
             ${i === activeIndex ? "opacity-100 z-20" : "opacity-0 z-0 sm:z-10"}`}
             style={{width: "85%", maxWidth: "1200px"}}
             >
-              <AnimatePresence>
+              <AnimatePresence mode="wait">
                 {i === activeIndex && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                  // showing the title , skills, image of the active project
+                  <motion.h3 key={project.title}
+                  initial={{opacity: 0, y: -30}}
+                  animate={{opacity: 1, y: 0}}
+                  exit={{opacity: 0, y: 30}}
+                  transition={{duration: 0.5, ease: "easeOut"}}
+                  className={`block text-center text-[clamp(2rem,6vw,5rem)] text-white/95 sm:absolute sm:-top-20 sm:left-[35%] lg:left-[-5%] sm:mb-0
+                    italic font-semibold ${isMobile ? "-mt-24" : ""}
+                    `}
+                     style={{zIndex: 5,
+                      textAlign: isMobile ? "center" : "left",
+
+                     }}
                   >
-                    <h3 className="text-xl font-bold">{project.title}</h3>
-                    <p className="text-gray-300">{project.description}</p>
-                  </motion.div>
+                    {project.title}
+                  </motion.h3>
                 )}
               </AnimatePresence>
+              <div className={`relative w-full overflow-hidden bg-black/20 shadow-2xl
+                md:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.7)] ${isMobile ? "mb-6 rounded-lg" : "mb-10 sm:mb-12 rounded-xl"} 
+                h-[62vh] sm:h-[66vh]
+              `}
+              style={{zIndex:10, transition: "box-shadow 250ms ease"}}
+              >
+                <img src={project.image} alt={project.title}
+                className="w-full h-full object-cover drop-shadow-xl md:drop-shadow-2xl"
+                style={{
+                  position: "relative",
+                  zIndex: 10,
+                  filter: "drop-shadow(0,16px 40px rgba(0,0,0, 0.65))",
+                  transition: "filter 200ms ease",
+                }}
+                loading="lazy"
+                />
+                <div className="pointer-events-none absolute inset-0"
+                style={{
+                  zIndex:11,
+                  background: "linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 40%)"
+                }}
+                ></div>
+              </div>
             </div>
           ))}
         </div>

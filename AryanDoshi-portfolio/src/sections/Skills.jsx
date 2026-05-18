@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import React from "react";
+import { motion, useMotionValue } from "framer-motion";
+import React, { useRef } from "react";
+import { useEffect } from "react";
 
 export default function Skills() {
 
@@ -23,8 +24,79 @@ const skills = [
   {icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", label: "Tailwind CSS"}
 ]
 const repeated = [...skills, ...skills]; //repeat skills to fill space
+// icons moving left to right infinitely and coming back to start when they go out of view
+// while scrolling down, move icons right to left and when scrolling up, move icons left to right
+const [dir, setdir] = React.useState(-1); //this is right to left
+// if skills section is visible , then this becomes true
+const [active, setactive] = React.useState(false);
+const sectionRef = useRef(null);
+const trackref = useRef(null);
+const touchY = useRef(null);
+const x = useMotionValue(0); // for smooth motion  
+// skill section visible or not
+useEffect(() => {
+  const el = sectionRef.current;
+  if(!el) return;
+  const io = new IntersectionObserver(([entry]) => {
+    setactive(entry.isIntersecting && entry.intersectionRatio > 0.1);
+  }
+  , {threshold: [0.1]});
+  io.observe(el);
+  return () => io.disconnect();
+  
+}, []);
+// move icons based on scroll direction
+useEffect(() => {
+  if(!active) return;
+  const onWheel = (e) => {
+    setdir(e.deltaY > 0 ? -1 : 1);
+  }
+  const onTouchStart = (e) => {
+    touchY.current = e.touches[0].clientY;
+  }
+  const onTouchMove = (e) => {
+    if(touchY.current == null) return;
+    const deltaY = e.touches[0].clientY - touchY.current;
+    setdir(deltaY > 0 ? -1 : 1);
+    touchY.current = e.touches[0].clientY;
+  }
+  window.addEventListener("wheel", onWheel, {passive: true});
+  window.addEventListener("touchstart", onTouchStart, {passive: true});
+  window.addEventListener("touchmove", onTouchMove, {passive: true});
+  return () => {
+    window.removeEventListener("wheel", onWheel);
+    window.removeEventListener("touchstart", onTouchStart);
+    window.removeEventListener("touchmove", onTouchMove);
+  }
+}, [active]);
+
+useEffect(() => {
+  let id;
+  let last = performance.now();
+  const SPEED = 80; // adjust this for faster or slower speed
+  const tick = (now) => {
+    const dt = (now - last)/1000; // delta time in seconds
+    last = now;
+    let next = x.get() + dir * SPEED * dt; // calculate next position
+    const loop = trackref.current?.scrollWidth / 2 || 0; // when to loop back
+    if(loop) {
+      if(next < -loop) next += loop; // loop back to start
+      else if(next > 0) next -= loop; // loop back to end
+    }
+    x.set(next);
+    id = requestAnimationFrame(tick);
+  }
+  id = requestAnimationFrame(tick);
+  return () => cancelAnimationFrame(id);
+}
+, [dir, x]);
+
+
+
   return (
-    <section id="skills" className="h-1/2 w-full pb-8 flex flex-col items-center justify-center relative bg-black text-white overflow-hidden">
+    <section id="skills" 
+    ref = {sectionRef}
+    className="h-1/2 w-full pb-8 flex flex-col items-center justify-center relative bg-black text-white overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         {/* //glowing blocks */}
         <div className="absolute top-1/4 left-0 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2] opacity-20 blur-[120px] animate-pulse"></div>
@@ -46,7 +118,12 @@ const repeated = [...skills, ...skills]; //repeat skills to fill space
       </motion.p>
 
       <div className="relative w-full overflow-hidden">
-      <motion.div className="flex gap-10 text-6xl text-[#1cd8d2]">
+      <motion.div
+      ref = {trackref}
+      className="flex gap-10 text-6xl text-[#1cd8d2]"
+      style={{x, whiteSpace: "nowrap", willChange: "transform"}}
+      >
+
         {repeated.map((skill, i) => (
           <div key={i} className="flex flex-col items-center gap-2 min-w-[120px]"
           aria-label={skill.label}

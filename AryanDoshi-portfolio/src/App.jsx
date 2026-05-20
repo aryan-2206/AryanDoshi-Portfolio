@@ -3,7 +3,6 @@ import Home from "./sections/Home"
 import About from "./sections/About"
 import Skills from "./sections/Skills"
 import Education from "./sections/Education"
-import Testimonials from "./sections/Testimonials"
 import Footer from "./sections/Footer"
 import Achievements from "./sections/Achievements"
 import Contact from "./sections/Contact"
@@ -29,11 +28,10 @@ export default function App() {
       <Navbar/>
       <Home></Home>
       <About></About>
+      <Education></Education>
       <Skills></Skills>
       <Projects></Projects>
-      <Education></Education>
       <Achievements></Achievements>
-      <Testimonials></Testimonials>
       <Contact></Contact>
       <Footer></Footer>
     </div>

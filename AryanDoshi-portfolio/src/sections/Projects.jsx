@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { AnimatePresence, motion, useMotionValue, useMotionValueEvent, useScroll } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from "framer-motion";
 import img1 from "../assets/img1.JPG";
 import img2 from "../assets/img2.JPG";
 import img3 from "../assets/img3.JPG";
@@ -7,12 +12,12 @@ import photo1 from "../assets/photo1.JPG";
 import photo2 from "../assets/photo2.PNG";
 import photo3 from "../assets/photo3.png";
 
-const useIsMobile = (query = "(max-width: 639px)") => {
+const useIsMobile = (query = "(max-width: 767px)") => {
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" ? window.matchMedia(query).matches : false
-  )
+  );
   useEffect(() => {
-    if(typeof window === "undefined") return;
+    if (typeof window === "undefined") return;
     const mql = window.matchMedia(query);
     const handler = (e) => setIsMobile(e.matches);
     mql.addEventListener("change", handler);
@@ -20,195 +25,318 @@ const useIsMobile = (query = "(max-width: 639px)") => {
     return () => mql.removeEventListener("change", handler);
   }, [query]);
   return isMobile;
-}
-
+};
 
 export default function Projects() {
   const isMobile = useIsMobile();
   const sceneRef = useRef(null);
 
-  const projects = useMemo(() => [
-  {
-    title: "SmartCV - AI Powered Resume Builder",
-    link: "https://smart-cv-an-ai-powered-resume-build.vercel.app/",
-    skills: [
-      "React",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Tailwind CSS",
-      "JWT",
-      "REST APIs",
-      "NLP",
-      "TF-IDF",
-      "Cosine Similarity",
+  const projects = useMemo(
+    () => [
+      {
+        title: "SmartCV — AI Resume Builder",
+        link: "https://smart-cv-an-ai-powered-resume-build.vercel.app/",
+        description:
+          "SmartCV streamlines resume creation and optimization using NLP techniques like TF-IDF and Cosine Similarity to match resumes against job descriptions. It provides actionable feedback through a full-stack platform featuring JWT authentication and a responsive React UI.",
+        skills: ["React", "Node.js", "Express.js", "MongoDB", "JWT", "NLP", "TF-IDF", "Tailwind CSS"],
+        bgColor: "#0d4d3d",
+        image: isMobile ? photo1 : img1,
+      },
+      {
+        title: "FakeMyVoice",
+        link: "https://github.com/nihira20/Fake_My_Voice",
+        description:
+          "A deep learning–based voice cloning system built with Tacotron2 for spectrogram generation and WaveGlow as the neural vocoder. Given a short audio sample, the pipeline synthesizes highly realistic speech that mimics the target speaker's voice characteristics.",
+        skills: ["Python", "PyTorch", "Tacotron2", "WaveGlow", "Librosa", "Torchaudio", "Speech Synthesis"],
+        bgColor: "#3884d3",
+        image: isMobile ? photo2 : img2,
+      },
+      {
+        title: "Image Captioning Model",
+        link: "https://github.com/aryan-2206/Image_Caption_Generator",
+        description:
+          "An end-to-end captioning model combining CNN visual feature extraction with LSTM and Attention mechanisms to generate descriptive captions. Trained on MS-COCO and evaluated with BLEU scores, it bridges Computer Vision and NLP to produce contextual image descriptions.",
+        skills: ["Python", "PyTorch", "CNN", "LSTM", "Attention Mechanism", "MS-COCO", "Deep Learning"],
+        bgColor: "#dc9317",
+        image: isMobile ? photo3 : img3,
+      },
+      {
+        title: "Smart City Waste Management",
+        link: "https://github.com/aryan-2206/Smart-City-Waste-Recycling-And-Management-System",
+        description:
+          "A full-stack MERN solution connecting citizens, waste collectors, and municipal authorities via real-time dashboards. The platform handles bin tracking, scheduled pickups, and recycling metrics with an intuitive interface and routing optimization.",
+        skills: ["React", "Node.js", "Express.js", "MongoDB", "JavaScript", "Tailwind CSS"],
+        bgColor: "#8b5cf6",
+        image: isMobile ? photo3 : img3,
+      },
+      {
+        title: "Equity Research AI Agent",
+        link: "https://github.com/DataHack4-0/Ctrl--Alt--De-Dragon",
+        description:
+          "An agentic AI system performing automated equity research on Indian listed companies. LangGraph orchestrates specialized agents — news intelligence, knowledge graphs, and adversarial bull/bear analysis — to produce evidence-backed investment theses streamed live to a dynamic dashboard.",
+        skills: ["Python", "LangGraph", "LLMs", "AI Agents", "Financial Analysis", "RAG", "NLP"],
+        bgColor: "#ef4444",
+        image: isMobile ? photo3 : img3,
+      },
+      {
+        title: "eDNA Biodiversity Pipeline",
+        link: "https://github.com/d-mahi14/eDNA-project",
+        description:
+          "A bioinformatics pipeline that analyses environmental DNA samples to assess ecosystem biodiversity. Variational Autoencoders reduce dimensionality, UMAP handles visualization, and HDBSCAN clusters species distributions — all surfaced through an interactive Flask web interface.",
+        skills: ["Python", "TensorFlow", "Flask", "VAE", "HDBSCAN", "UMAP", "Bioinformatics", "ML"],
+        bgColor: "#14b8a6",
+        image: isMobile ? photo3 : img3,
+      },
     ],
-    bgColor: "#0d4d3d",
-    image: isMobile ? photo1 : img1,
-  },
-  {
-    title: "FakeMyVoice",
-    link: "https://github.com/nihira20/Fake_My_Voice",
-    skills: [
-      "Python",
-      "PyTorch",
-      "Deep Learning",
-      "Tacotron2",
-      "WaveGlow",
-      "Librosa",
-      "NumPy",
-      "Torchaudio",
-      "Speech Synthesis",
-      "Voice Cloning",
-    ],
-    bgColor: "#3884d3",
-    image: isMobile ? photo2 : img2,
-  },
-  {
-    title: "Image Captioning Model",
-    link: "https://github.com/aryan-2206/Image_Caption_Generator",
-    skills: [
-      "Python",
-      "PyTorch",
-      "Computer Vision",
-      "CNN",
-      "LSTM",
-      "Attention Mechanism",
-      "NLP",
-      "MS-COCO",
-      "BLEU Score",
-      "Deep Learning",
-    ],
-    bgColor: "#dc9317",
-    image: isMobile ? photo3 : img3,
-  },
-  {
-    title: "Smart City Waste Management System",
-    link: "https://github.com/aryan-2206/Smart-City-Waste-Recycling-And-Management-System",
-    skills: [
-      "React",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "JavaScript",
-      "Tailwind CSS",
-    ],
-    bgColor: "#8b5cf6",
-    image: isMobile ? photo3 : img3,
-  },
-  {
-    title: "Equity Research AI Agent",
-    link: "https://github.com/DataHack4-0/Ctrl--Alt--De-Dragon",
-    skills: [
-      "Python",
-      "AI Agents",
-      "LLMs",
-      "Financial Analysis",
-      "Machine Learning",
-      "Data Analysis",
-      "NLP",
-      "Automation",
-    ],
-    bgColor: "#ef4444",
-    image: isMobile ? photo3 : img3,
-  },
-  {
-    title: "eDNA Biodiversity Analysis Pipeline",
-    link: "https://github.com/d-mahi14/eDNA-project",
-    skills: [
-      "Python",
-      "TensorFlow",
-      "Flask",
-      "Variational Autoencoders",
-      "HDBSCAN",
-      "UMAP",
-      "Bioinformatics",
-      "Machine Learning",
-      "Data Visualization",
-      "Biodiversity Analysis",
-    ],
-    bgColor: "#14b8a6",
-    image: isMobile ? photo3 : img3,
-  },
-], [isMobile]);
+    [isMobile]
+  );
 
-  const {scrollYProgress} = useScroll({
+  const { scrollYProgress } = useScroll({
     target: sceneRef,
-    offset: ["start start", "end end"]
-  })
-  const thresholds = projects.map((_, i) => (i+1)/projects.length);
+    offset: ["start start", "end end"],
+  });
+  const thresholds = projects.map((_, i) => (i + 1) / projects.length);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     const index = thresholds.findIndex((t) => v <= t);
     setActiveIndex(index === -1 ? thresholds.length - 1 : index);
   });
-  const activeProject = projects[activeIndex];
-  return (
-    <section id="projects" 
-    ref = {sceneRef} 
-    className="relative text-white"
-    style={{
-      height: `${projects.length * 100}vh`,
-      backgroundColor: activeProject.bgColor,
-      transition: "background-color 400ms ease"
-    }}
-    >
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center">
-        <h2 className={`text-3xl font-semibold z-10 text-center ${isMobile ? "mt-4" : "mt-8"}`}>My Work</h2>
-        <div className={`relative w-full h-full flex items-center justify-center ${isMobile ? "-mt-4" : ""}`}>
-          {projects.map((project, i) => (
-            <div key={project.title} className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500 
-            ${i === activeIndex ? "opacity-100 z-20" : "opacity-0 z-0 sm:z-10"}`}
-            style={{width: "85%", maxWidth: "1200px"}}
-            >
-              <AnimatePresence mode="wait">
-                {i === activeIndex && (
-                  // showing the title , skills, image of the active project
-                  <motion.h3 key={project.title}
-                  initial={{opacity: 0, y: -30}}
-                  animate={{opacity: 1, y: 0}}
-                  exit={{opacity: 0, y: 30}}
-                  transition={{duration: 0.5, ease: "easeOut"}}
-                  className={`block text-center text-[clamp(2rem,6vw,5rem)] text-white/95 sm:absolute sm:-top-20 sm:left-[35%] lg:left-[-5%] sm:mb-0
-                    italic font-semibold ${isMobile ? "-mt-24" : ""}
-                    `}
-                     style={{zIndex: 5,
-                      textAlign: isMobile ? "center" : "left",
 
-                     }}
+  const activeProject = projects[activeIndex];
+
+  return (
+    <section
+      id="projects"
+      ref={sceneRef}
+      className="relative text-white"
+      style={{
+        height: `${projects.length * 100}vh`,
+        backgroundColor: activeProject.bgColor,
+        transition: "background-color 400ms ease",
+      }}
+    >
+      <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
+        {/* ── Section heading ── */}
+        <h2 className="text-3xl font-semibold text-center pt-6 pb-3 flex-shrink-0 z-10">
+          My Work
+        </h2>
+
+        {/* ── Main card area ── fills remaining height ── */}
+        <div className="flex-1 relative flex items-center justify-center px-4 md:px-10 pb-6 min-h-0">
+          {projects.map((project, i) => (
+            <div
+              key={project.title}
+              className={`absolute inset-0 flex items-center justify-center px-4 md:px-10 pb-6 transition-opacity duration-500 ${
+                i === activeIndex ? "opacity-100 z-20" : "opacity-0 z-0"
+              }`}
+            >
+              {/* ── DESKTOP: two-column ── */}
+              {!isMobile && (
+                <div className="w-full max-w-6xl h-full flex flex-row gap-8 items-center">
+                  {/* Left column — title + skills + desc + button */}
+                  <AnimatePresence mode="wait">
+                    {i === activeIndex && (
+                      <motion.div
+                        key={project.title + "-left"}
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -30 }}
+                        transition={{ duration: 0.45, ease: "easeOut" }}
+                        className="flex flex-col justify-center gap-4 flex-shrink-0"
+                        style={{ width: "40%" }}
+                      >
+                        <h3
+                          className="italic font-bold text-white/95 leading-tight"
+                          style={{ fontSize: "clamp(1.5rem, 2.8vw, 2.6rem)" }}
+                        >
+                          {project.title}
+                        </h3>
+
+                        {/* Skills pills */}
+                        <div className="flex flex-wrap gap-1.5">
+                          {project.skills.map((skill) => (
+                            <span
+                              key={skill}
+                              className="px-3 py-1 rounded-full text-xs font-medium"
+                              style={{
+                                background: "rgba(255,255,255,0.18)",
+                                border: "1px solid rgba(255,255,255,0.3)",
+                                backdropFilter: "blur(6px)",
+                                color: "rgba(255,255,255,0.95)",
+                              }}
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-white/75 text-sm leading-relaxed">
+                          {project.description}
+                        </p>
+
+                        {/* Button */}
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="self-start inline-block px-6 py-2.5 font-semibold rounded-lg bg-white text-black hover:bg-gray-200 transition-all"
+                          aria-label={`View ${project.title}`}
+                        >
+                          View Project
+                        </a>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Right column — image */}
+                  <AnimatePresence mode="wait">
+                    {i === activeIndex && (
+                      <motion.div
+                        key={project.title + "-img"}
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 30 }}
+                        transition={{ duration: 0.45, ease: "easeOut" }}
+                        className="flex-1 rounded-xl overflow-hidden bg-black/20 shadow-2xl md:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.7)] min-h-0"
+                        style={{
+                          height: "min(62vh, 520px)",
+                          zIndex: 10,
+                          transition: "box-shadow 250ms ease",
+                        }}
+                      >
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover"
+                          style={{
+                            filter: "drop-shadow(0 16px 40px rgba(0,0,0,0.65))",
+                            transition: "filter 200ms ease",
+                          }}
+                          loading="lazy"
+                        />
+                        <div
+                          className="pointer-events-none absolute inset-0"
+                          style={{
+                            background:
+                              "linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 40%)",
+                          }}
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
+
+              {/* ── MOBILE: single-column stacked ── */}
+              {isMobile && (
+                <div className="w-full max-w-lg flex flex-col gap-3 items-center">
+                  {/* Title */}
+                  <AnimatePresence mode="wait">
+                    {i === activeIndex && (
+                      <motion.h3
+                        key={project.title + "-m-title"}
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        className="text-center italic font-bold text-white/95 text-xl leading-tight px-2"
+                      >
+                        {project.title}
+                      </motion.h3>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Image */}
+                  <AnimatePresence mode="wait">
+                    {i === activeIndex && (
+                      <motion.div
+                        key={project.title + "-m-img"}
+                        initial={{ opacity: 0, scale: 0.97 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.97 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        className="w-full rounded-lg overflow-hidden bg-black/20 shadow-2xl"
+                        style={{ height: "32vw", minHeight: "140px", maxHeight: "210px" }}
+                      >
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Skills pills */}
+                  <AnimatePresence mode="wait">
+                    {i === activeIndex && (
+                      <motion.div
+                        key={project.title + "-m-skills"}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
+                        className="flex flex-wrap justify-center gap-1.5 w-full px-2"
+                      >
+                        {project.skills.slice(0, 6).map((skill) => (
+                          <span
+                            key={skill}
+                            className="px-2.5 py-0.5 rounded-full text-xs font-medium"
+                            style={{
+                              background: "rgba(255,255,255,0.18)",
+                              border: "1px solid rgba(255,255,255,0.3)",
+                              backdropFilter: "blur(6px)",
+                              color: "rgba(255,255,255,0.95)",
+                            }}
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Description (2 lines on mobile) */}
+                  <AnimatePresence mode="wait">
+                    {i === activeIndex && (
+                      <motion.p
+                        key={project.title + "-m-desc"}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.4, ease: "easeOut", delay: 0.05 }}
+                        className="text-center text-white/75 text-xs leading-relaxed px-2"
+                        style={{
+                          display: "-webkit-box",
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                        }}
+                      >
+                        {project.description}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Button */}
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-5 py-2 font-semibold rounded-lg bg-white text-black hover:bg-gray-200 transition-all text-sm"
+                    aria-label={`View ${project.title}`}
                   >
-                    {project.title}
-                  </motion.h3>
-                )}
-              </AnimatePresence>
-              <div className={`relative w-full overflow-hidden bg-black/20 shadow-2xl
-                md:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.7)] ${isMobile ? "mb-6 rounded-lg" : "mb-10 sm:mb-12 rounded-xl"} 
-                h-[62vh] sm:h-[66vh]
-              `}
-              style={{zIndex:10, transition: "box-shadow 250ms ease"}}
-              >
-                <img src={project.image} alt={project.title}
-                className="w-full h-full object-cover drop-shadow-xl md:drop-shadow-2xl"
-                style={{
-                  position: "relative",
-                  zIndex: 10,
-                  filter: "drop-shadow(0,16px 40px rgba(0,0,0, 0.65))",
-                  transition: "filter 200ms ease",
-                }}
-                loading="lazy"
-                />
-                <div className="pointer-events-none absolute inset-0"
-                style={{
-                  zIndex:11,
-                  background: "linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 40%)"
-                }}
-                ></div>
-              </div>
+                    View Project
+                  </a>
+                </div>
+              )}
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

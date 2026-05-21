@@ -100,10 +100,10 @@ useEffect(() => {
     className="h-1/2 w-full pb-8 flex flex-col items-center justify-center relative bg-black text-white overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         {/* //glowing blocks */}
-        <div className="absolute top-1/4 left-0 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2] opacity-20 blur-[120px] animate-pulse"></div>
-        <div className="absolute right-1/4 bottom-0 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2] opacity-20 blur-[120px] animate-pulse delay-500"></div>
+        <div className="absolute top-1/4 left-0 w-75 h-75 rounded-full bg-linear-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2] opacity-20 blur-[120px] animate-pulse"></div>
+        <div className="absolute right-1/4 bottom-0 w-75 h-75 rounded-full bg-linear-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2] opacity-20 blur-[120px] animate-pulse delay-500"></div>
       </div>
-      <motion.h2 className="text-4xl mt-5 sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1cd8d2] via-[#00bf8f] to-[#302b63] z-10"
+      <motion.h2 className="text-4xl mt-5 sm:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#1cd8d2] via-[#00bf8f] to-[#302b63] z-10"
       initial={{opacity: 0, y: -30}}
       whileInView={{opacity: 1, y: 0}}
       transition={{duration: 0.5, delay:0.1}}
@@ -126,7 +126,7 @@ useEffect(() => {
       >
 
         {repeated.map((skill, i) => (
-          <div key={i} className="flex flex-col items-center gap-2 min-w-[120px]"
+          <div key={i} className="flex flex-col items-center gap-2 min-w-30"
           aria-label={skill.label}
           title={skill.label}
           >

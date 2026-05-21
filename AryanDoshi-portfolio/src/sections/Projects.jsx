@@ -118,7 +118,7 @@ export default function Projects() {
     >
       <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
         {/* ── Section heading ── */}
-        <h2 className="text-3xl font-semibold text-center pt-6 pb-3 flex-shrink-0 z-10">
+        <h2 className="text-3xl font-semibold text-center pt-6 pb-3 shrink-0 z-10">
           My Work
         </h2>
 
@@ -143,7 +143,7 @@ export default function Projects() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -30 }}
                         transition={{ duration: 0.45, ease: "easeOut" }}
-                        className="flex flex-col justify-center gap-4 flex-shrink-0"
+                        className="flex flex-col justify-center gap-4 shrink-0"
                         style={{ width: "40%" }}
                       >
                         <h3

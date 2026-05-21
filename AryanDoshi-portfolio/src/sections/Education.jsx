@@ -38,7 +38,7 @@ function CoursePills({ courses, compact = false }) {
             key={i}
             className={
               compact
-                ? "text-[9px] px-1.5 py-[2px] rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-300 font-medium"
+                ? "text-[9px] px-1.5 py-0.5 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-300 font-medium"
                 : "text-xs px-2.5 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-300 font-medium"
             }
           >
@@ -79,12 +79,12 @@ function DesktopCard({ edu, idx, start, end, scrollYProgress }) {
       />
       {/* Vertical connector to card */}
       <motion.div
-        className={`absolute ${idx % 2 === 0 ? "-top-8" : "-bottom-8"} w-[3px] bg-white/40 rounded`}
+        className={`absolute ${idx % 2 === 0 ? "-top-8" : "-bottom-8"} w-0.75 bg-white/40 rounded`}
         style={{ height: 36, opacity }}
       />
       {/* Card — fixed 300px, no vw clamping that could squish it */}
       <motion.article
-        className={`absolute ${idx % 2 === 0 ? "bottom-12" : "top-12"} bg-gray-900/85 backdrop-blur-md border border-gray-700/60 rounded-2xl p-6 w-[300px] shadow-xl`}
+        className={`absolute ${idx % 2 === 0 ? "bottom-12" : "top-12"} bg-gray-900/85 backdrop-blur-md border border-gray-700/60 rounded-2xl p-6 w-75 shadow-xl`}
         style={{ opacity, y, scale }}
       >
         <p className="text-xs text-blue-400 font-semibold uppercase tracking-wider">{edu.desc}</p>
@@ -115,7 +115,7 @@ function MobileStickyCard({ edu, start, end, scrollYProgress }) {
     <div className="relative flex items-start">
       {/* Timeline dot */}
       <motion.div
-        className="absolute -left-[23px] top-3 z-10 w-5 h-5 rounded-full bg-white shadow-[0_0_10px_3px_rgba(255,255,255,0.5)] flex-shrink-0"
+        className="absolute -left-5.75 top-3 z-10 w-5 h-5 rounded-full bg-white shadow-[0_0_10px_3px_rgba(255,255,255,0.5)] shrink-0"
         style={{ scale: dotScale, opacity }}
       />
       {/* Card */}
@@ -201,9 +201,9 @@ export default function Education() {
             {!isMobile && (
               <div className="relative w-full max-w-7xl">
                 {/* Horizontal timeline track */}
-                <div className="relative h-[5px] bg-white/15 rounded overflow-hidden">
+                <div className="relative h-1.25 bg-white/15 rounded overflow-hidden">
                   <motion.div
-                    className="absolute left-0 top-0 h-[5px] bg-white rounded"
+                    className="absolute left-0 top-0 h-1.25 bg-white rounded"
                     style={{ width: lineWidth }}
                   />
                 </div>
@@ -227,7 +227,7 @@ export default function Education() {
             {isMobile && (
               <div className="relative w-full max-w-sm">
                 {/* Vertical timeline track */}
-                <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-white/15 rounded overflow-hidden">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-white/15 rounded overflow-hidden">
                   <motion.div
                     className="absolute top-0 left-0 w-full bg-white rounded origin-top"
                     style={{ scaleY: mobileLineScaleY, height: "100%" }}

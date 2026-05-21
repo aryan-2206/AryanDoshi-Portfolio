@@ -12,7 +12,7 @@ import photo1 from "../assets/photo1.JPG";
 import photo2 from "../assets/photo2.PNG";
 import photo3 from "../assets/photo3.png";
 
-const useIsMobile = (query = "(max-width: 767px)") => {
+const useIsMobile = (query = "(max-width: 768px)") => {
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" ? window.matchMedia(query).matches : false
   );
@@ -21,7 +21,7 @@ const useIsMobile = (query = "(max-width: 767px)") => {
     const mql = window.matchMedia(query);
     const handler = (e) => setIsMobile(e.matches);
     mql.addEventListener("change", handler);
-    setIsMobile(mql.matches);
+    // setIsMobile(mql.matches);
     return () => mql.removeEventListener("change", handler);
   }, [query]);
   return isMobile;

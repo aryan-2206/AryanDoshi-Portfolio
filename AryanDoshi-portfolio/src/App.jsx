@@ -4,12 +4,13 @@ import About from "./sections/About"
 import Skills from "./sections/Skills"
 import Education from "./sections/Education"
 import Footer from "./sections/Footer"
-import Achievements from "./sections/Achievements"
+// import BeyondTheCode from "./sections/BeyondTheCode"
 import Contact from "./sections/Contact"
 import Projects from "./sections/Projects"
 import ParticlesBackground from "./components/ParticlesBackground"
 import CustomCursor from "./components/CustomCursor"
 import IntroAnimations from "./components/IntroAnimations"
+
 import { useState } from "react"
 
 export default function App() {
@@ -31,7 +32,7 @@ export default function App() {
       <Education></Education>
       <Skills></Skills>
       <Projects></Projects>
-      <Achievements></Achievements>
+      {/* <BeyondTheCode></BeyondTheCode> */}
       <Contact></Contact>
       <Footer></Footer>
     </div>

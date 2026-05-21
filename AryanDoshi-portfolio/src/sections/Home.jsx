@@ -14,7 +14,7 @@ const socials = [
   {Icon : FaEnvelope, link: "mailto:aryandoshi22@gmail.com", label: "Email"},
   {Icon : FaInstagram, link: "https://www.instagram.com/aryandoshi_/", label: "Instagram"},
   {Icon : SiLeetcode, link: "https://leetcode.com/aryandoshi_/", label: "LeetCode"},
-  {Icon : SiCodechef, link: "https://www.codechef.com/users/aryandoshi", label: "CodeChef"},
+  {Icon : SiCodechef, link: "https://www.codechef.com/users/aryandoshii", label: "CodeChef"},
   {Icon : SiCodeforces, link: "https://codeforces.com/profile/aryandoshi", label: "Codeforces"},
 ]
 

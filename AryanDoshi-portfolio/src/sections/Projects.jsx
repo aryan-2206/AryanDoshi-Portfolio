@@ -5,12 +5,14 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "framer-motion";
-import img1 from "../assets/img1.JPG";
-import img2 from "../assets/img2.JPG";
-import img3 from "../assets/img3.JPG";
-import photo1 from "../assets/photo1.JPG";
-import photo2 from "../assets/photo2.PNG";
-import photo3 from "../assets/photo3.png";
+import smartcv from "../assets/smartcv.png";
+import swms from "../assets/swms.png";
+import fmv from "../assets/fmv.jpg";
+import imgcaption from "../assets/imgcaption.png";
+import ednadesk from "../assets/ednadesk.jpeg";
+import ednamob from "../assets/ednamob.jpeg";
+import equitydesk from "../assets/equitydesk.png";
+import equitymob from "../assets/equitymob.png";
 
 const useIsMobile = (query = "(max-width: 768px)") => {
   const [isMobile, setIsMobile] = useState(
@@ -40,16 +42,16 @@ export default function Projects() {
           "SmartCV streamlines resume creation and optimization using NLP techniques like TF-IDF and Cosine Similarity to match resumes against job descriptions. It provides actionable feedback through a full-stack platform featuring JWT authentication and a responsive React UI.",
         skills: ["React", "Node.js", "Express.js", "MongoDB", "JWT", "NLP", "TF-IDF", "Tailwind CSS"],
         bgColor: "#0d4d3d",
-        image: isMobile ? photo1 : img1,
+        image: isMobile ? smartcv : smartcv,
       },
       {
         title: "FakeMyVoice",
         link: "https://github.com/nihira20/Fake_My_Voice",
         description:
-          "A deep learning–based voice cloning system built with Tacotron2 for spectrogram generation and WaveGlow as the neural vocoder. Given a short audio sample, the pipeline synthesizes highly realistic speech that mimics the target speaker's voice characteristics.",
+          "A deep learning-based voice cloning system built with Tacotron2 for spectrogram generation and WaveGlow as the neural vocoder. Given a short audio sample, the pipeline synthesizes highly realistic speech that mimics the target speaker's voice characteristics.",
         skills: ["Python", "PyTorch", "Tacotron2", "WaveGlow", "Librosa", "Torchaudio", "Speech Synthesis"],
         bgColor: "#3884d3",
-        image: isMobile ? photo2 : img2,
+        image: isMobile ? fmv : fmv,
       },
       {
         title: "Image Captioning Model",
@@ -58,16 +60,7 @@ export default function Projects() {
           "An end-to-end captioning model combining CNN visual feature extraction with LSTM and Attention mechanisms to generate descriptive captions. Trained on MS-COCO and evaluated with BLEU scores, it bridges Computer Vision and NLP to produce contextual image descriptions.",
         skills: ["Python", "PyTorch", "CNN", "LSTM", "Attention Mechanism", "MS-COCO", "Deep Learning"],
         bgColor: "#dc9317",
-        image: isMobile ? photo3 : img3,
-      },
-      {
-        title: "Smart City Waste Management",
-        link: "https://github.com/aryan-2206/Smart-City-Waste-Recycling-And-Management-System",
-        description:
-          "A full-stack MERN solution connecting citizens, waste collectors, and municipal authorities via real-time dashboards. The platform handles bin tracking, scheduled pickups, and recycling metrics with an intuitive interface and routing optimization.",
-        skills: ["React", "Node.js", "Express.js", "MongoDB", "JavaScript", "Tailwind CSS"],
-        bgColor: "#8b5cf6",
-        image: isMobile ? photo3 : img3,
+        image: isMobile ? imgcaption : imgcaption,
       },
       {
         title: "Equity Research AI Agent",
@@ -76,7 +69,7 @@ export default function Projects() {
           "An agentic AI system performing automated equity research on Indian listed companies. LangGraph orchestrates specialized agents — news intelligence, knowledge graphs, and adversarial bull/bear analysis — to produce evidence-backed investment theses streamed live to a dynamic dashboard.",
         skills: ["Python", "LangGraph", "LLMs", "AI Agents", "Financial Analysis", "RAG", "NLP"],
         bgColor: "#ef4444",
-        image: isMobile ? photo3 : img3,
+        image: isMobile ? equitymob : equitydesk,
       },
       {
         title: "eDNA Biodiversity Pipeline",
@@ -85,7 +78,16 @@ export default function Projects() {
           "A bioinformatics pipeline that analyses environmental DNA samples to assess ecosystem biodiversity. Variational Autoencoders reduce dimensionality, UMAP handles visualization, and HDBSCAN clusters species distributions — all surfaced through an interactive Flask web interface.",
         skills: ["Python", "TensorFlow", "Flask", "VAE", "HDBSCAN", "UMAP", "Bioinformatics", "ML"],
         bgColor: "#14b8a6",
-        image: isMobile ? photo3 : img3,
+        image: isMobile ? ednamob : ednadesk,
+      },
+      {
+        title: "Smart City Waste Management",
+        link: "https://github.com/aryan-2206/Smart-City-Waste-Recycling-And-Management-System",
+        description:
+          "A full-stack MERN solution connecting citizens, waste collectors, and municipal authorities via real-time dashboards. The platform handles bin tracking, scheduled pickups, and recycling metrics with an intuitive interface and routing optimization.",
+        skills: ["React", "Node.js", "Express.js", "MongoDB", "JavaScript", "Tailwind CSS"],
+        bgColor: "#8b5cf6",
+        image: isMobile ? swms : swms,
       },
     ],
     [isMobile]

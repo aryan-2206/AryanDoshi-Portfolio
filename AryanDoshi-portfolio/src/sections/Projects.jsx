@@ -13,6 +13,8 @@ import ednadesk from "../assets/ednadesk.jpeg";
 import ednamob from "../assets/ednamob.jpeg";
 import equitydesk from "../assets/equitydesk.png";
 import equitymob from "../assets/equitymob.png";
+import banquetdesk from "../assets/banquetdesk.png";
+import banquetmob from "../assets/banquetmob.jpeg";
 
 const useIsMobile = (query = "(max-width: 768px)") => {
   const [isMobile, setIsMobile] = useState(
@@ -54,6 +56,33 @@ export default function Projects() {
         image: isMobile ? fmv : fmv,
       },
       {
+        title: "Equity Research AI Agent",
+        link: "https://github.com/DataHack4-0/Ctrl--Alt--De-Dragon",
+        description:
+        "An agentic AI system performing automated equity research on Indian listed companies. LangGraph orchestrates specialized agents — news intelligence, knowledge graphs, and adversarial bull/bear analysis — to produce evidence-backed investment theses streamed live to a dynamic dashboard.",
+        skills: ["Python", "LangGraph", "LLMs", "AI Agents", "Financial Analysis", "RAG", "NLP"],
+        bgColor: "#ef4444",
+        image: isMobile ? equitymob : equitydesk,
+      },
+      {
+        title: "Banquet IntelliManager",
+        link: "https://github.com/aryan-2206/Banquet_Management_System",
+        description:
+          "A full-stack banquet operations platform unifying Sales, Finance, Kitchen, Guest Relations, and Admin under a single real-time command center. Features WhatsApp automation via Twilio for guest ticketing and installment reminders, live WebSocket sync between GRE QR scanning and kitchen dashboards, JWT-based role-based access control across seven modules, and an AI-powered post-event audit engine that generates executive summaries for cost and yield optimization.",
+        skills: ["React", "Node.js", "Express.js", "MongoDB", "Socket.io", "JWT", "Twilio", "REST APIs"],
+        bgColor: "#7c3aed",
+        image: isMobile ? banquetmob : banquetdesk,
+      },
+      {
+        title: "eDNA Biodiversity Pipeline",
+        link: "https://github.com/d-mahi14/eDNA-project",
+        description:
+        "A bioinformatics pipeline that analyses environmental DNA samples to assess ecosystem biodiversity. Variational Autoencoders reduce dimensionality, UMAP handles visualization, and HDBSCAN clusters species distributions — all surfaced through an interactive Flask web interface.",
+        skills: ["Python", "TensorFlow", "Flask", "VAE", "HDBSCAN", "UMAP", "Bioinformatics", "ML"],
+        bgColor: "#14b8a6",
+        image: isMobile ? ednamob : ednadesk,
+      },
+      {
         title: "Image Captioning Model",
         link: "https://github.com/aryan-2206/Image_Caption_Generator",
         description:
@@ -61,24 +90,6 @@ export default function Projects() {
         skills: ["Python", "PyTorch", "CNN", "LSTM", "Attention Mechanism", "MS-COCO", "Deep Learning"],
         bgColor: "#dc9317",
         image: isMobile ? imgcaption : imgcaption,
-      },
-      {
-        title: "Equity Research AI Agent",
-        link: "https://github.com/DataHack4-0/Ctrl--Alt--De-Dragon",
-        description:
-          "An agentic AI system performing automated equity research on Indian listed companies. LangGraph orchestrates specialized agents — news intelligence, knowledge graphs, and adversarial bull/bear analysis — to produce evidence-backed investment theses streamed live to a dynamic dashboard.",
-        skills: ["Python", "LangGraph", "LLMs", "AI Agents", "Financial Analysis", "RAG", "NLP"],
-        bgColor: "#ef4444",
-        image: isMobile ? equitymob : equitydesk,
-      },
-      {
-        title: "eDNA Biodiversity Pipeline",
-        link: "https://github.com/d-mahi14/eDNA-project",
-        description:
-          "A bioinformatics pipeline that analyses environmental DNA samples to assess ecosystem biodiversity. Variational Autoencoders reduce dimensionality, UMAP handles visualization, and HDBSCAN clusters species distributions — all surfaced through an interactive Flask web interface.",
-        skills: ["Python", "TensorFlow", "Flask", "VAE", "HDBSCAN", "UMAP", "Bioinformatics", "ML"],
-        bgColor: "#14b8a6",
-        image: isMobile ? ednamob : ednadesk,
       },
       {
         title: "Smart City Waste Management",

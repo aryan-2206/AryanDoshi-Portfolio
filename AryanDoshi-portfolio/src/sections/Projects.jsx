@@ -6,7 +6,7 @@ import {
   useScroll,
 } from "framer-motion";
 import smartcv from "../assets/smartcv.png";
-import swms from "../assets/swms.png";
+// import swms from "../assets/swms.png";
 import fmv from "../assets/fmv.jpg";
 import imgcaption from "../assets/imgcaption.png";
 import ednadesk from "../assets/ednadesk.jpeg";
@@ -34,17 +34,17 @@ const useIsMobile = (query = "(max-width: 768px)") => {
 export default function Projects() {
   const isMobile = useIsMobile();
   const sceneRef = useRef(null);
-
+  
   const projects = useMemo(
     () => [
       {
-        title: "SmartCV — AI Resume Builder",
-        link: "https://smart-cv-an-ai-powered-resume-build.vercel.app/",
+        title: "Banquet IntelliManager",
+        link: "https://github.com/aryan-2206/Banquet_Management_System",
         description:
-          "SmartCV streamlines resume creation and optimization using NLP techniques like TF-IDF and Cosine Similarity to match resumes against job descriptions. It provides actionable feedback through a full-stack platform featuring JWT authentication and a responsive React UI.",
-        skills: ["React", "Node.js", "Express.js", "MongoDB", "JWT", "NLP", "TF-IDF", "Tailwind CSS"],
-        bgColor: "#0d4d3d",
-        image: isMobile ? smartcv : smartcv,
+        "A full-stack banquet operations platform unifying Sales, Finance, Kitchen, Guest Relations, and Admin under a single real-time command center. Features WhatsApp automation via Twilio for guest ticketing and installment reminders, live WebSocket sync between GRE QR scanning and kitchen dashboards, JWT-based role-based access control across seven modules, and an AI-powered post-event audit engine that generates executive summaries for cost and yield optimization.",
+        skills: ["React", "Node.js", "Express.js", "MongoDB", "Socket.io", "JWT", "Twilio", "REST APIs"],
+        bgColor: "#7c3aed",
+        image: isMobile ? banquetmob : banquetdesk,
       },
       {
         title: "FakeMyVoice",
@@ -56,6 +56,24 @@ export default function Projects() {
         image: isMobile ? fmv : fmv,
       },
       {
+        title: "SmartCV — AI Resume Builder",
+        link: "https://smart-cv-an-ai-powered-resume-build.vercel.app/",
+        description:
+          "SmartCV streamlines resume creation and optimization using NLP techniques like TF-IDF and Cosine Similarity to match resumes against job descriptions. It provides actionable feedback through a full-stack platform featuring JWT authentication and a responsive React UI.",
+        skills: ["React", "Node.js", "Express.js", "MongoDB", "JWT", "NLP", "TF-IDF", "Tailwind CSS"],
+        bgColor: "#0d4d3d",
+        image: isMobile ? smartcv : smartcv,
+      },
+      {
+        title: "Image Captioning Model",
+        link: "https://github.com/aryan-2206/Image_Caption_Generator",
+        description:
+        "An end-to-end captioning model combining CNN visual feature extraction with LSTM and Attention mechanisms to generate descriptive captions. Trained on MS-COCO and evaluated with BLEU scores, it bridges Computer Vision and NLP to produce contextual image descriptions.",
+        skills: ["Python", "PyTorch", "CNN", "LSTM", "Attention Mechanism", "MS-COCO", "Deep Learning"],
+        bgColor: "#dc9317",
+        image: isMobile ? imgcaption : imgcaption,
+      },
+      {
         title: "Equity Research AI Agent",
         link: "https://github.com/DataHack4-0/Ctrl--Alt--De-Dragon",
         description:
@@ -63,15 +81,6 @@ export default function Projects() {
         skills: ["Python", "LangGraph", "LLMs", "AI Agents", "Financial Analysis", "RAG", "NLP"],
         bgColor: "#ef4444",
         image: isMobile ? equitymob : equitydesk,
-      },
-      {
-        title: "Banquet IntelliManager",
-        link: "https://github.com/aryan-2206/Banquet_Management_System",
-        description:
-          "A full-stack banquet operations platform unifying Sales, Finance, Kitchen, Guest Relations, and Admin under a single real-time command center. Features WhatsApp automation via Twilio for guest ticketing and installment reminders, live WebSocket sync between GRE QR scanning and kitchen dashboards, JWT-based role-based access control across seven modules, and an AI-powered post-event audit engine that generates executive summaries for cost and yield optimization.",
-        skills: ["React", "Node.js", "Express.js", "MongoDB", "Socket.io", "JWT", "Twilio", "REST APIs"],
-        bgColor: "#7c3aed",
-        image: isMobile ? banquetmob : banquetdesk,
       },
       {
         title: "eDNA Biodiversity Pipeline",
@@ -82,24 +91,15 @@ export default function Projects() {
         bgColor: "#14b8a6",
         image: isMobile ? ednamob : ednadesk,
       },
-      {
-        title: "Image Captioning Model",
-        link: "https://github.com/aryan-2206/Image_Caption_Generator",
-        description:
-          "An end-to-end captioning model combining CNN visual feature extraction with LSTM and Attention mechanisms to generate descriptive captions. Trained on MS-COCO and evaluated with BLEU scores, it bridges Computer Vision and NLP to produce contextual image descriptions.",
-        skills: ["Python", "PyTorch", "CNN", "LSTM", "Attention Mechanism", "MS-COCO", "Deep Learning"],
-        bgColor: "#dc9317",
-        image: isMobile ? imgcaption : imgcaption,
-      },
-      {
-        title: "Smart City Waste Management",
-        link: "https://github.com/aryan-2206/Smart-City-Waste-Recycling-And-Management-System",
-        description:
-          "A full-stack MERN solution connecting citizens, waste collectors, and municipal authorities via real-time dashboards. The platform handles bin tracking, scheduled pickups, and recycling metrics with an intuitive interface and routing optimization.",
-        skills: ["React", "Node.js", "Express.js", "MongoDB", "JavaScript", "Tailwind CSS"],
-        bgColor: "#8b5cf6",
-        image: isMobile ? swms : swms,
-      },
+      // {
+      //   title: "Smart City Waste Management",
+      //   link: "https://github.com/aryan-2206/Smart-City-Waste-Recycling-And-Management-System",
+      //   description:
+      //     "A full-stack MERN solution connecting citizens, waste collectors, and municipal authorities via real-time dashboards. The platform handles bin tracking, scheduled pickups, and recycling metrics with an intuitive interface and routing optimization.",
+      //   skills: ["React", "Node.js", "Express.js", "MongoDB", "JavaScript", "Tailwind CSS"],
+      //   bgColor: "#8b5cf6",
+      //   image: isMobile ? swms : swms,
+      // },
     ],
     [isMobile]
   );

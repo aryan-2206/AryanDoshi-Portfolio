@@ -56,6 +56,15 @@ export default function Projects() {
         image: isMobile ? fmv : fmv,
       },
       {
+        title: "Equity Research AI Agent",
+        link: "https://github.com/DataHack4-0/Ctrl--Alt--De-Dragon",
+        description:
+        "An agentic AI system performing automated equity research on Indian listed companies. LangGraph orchestrates specialized agents — news intelligence, knowledge graphs, and adversarial bull/bear analysis — to produce evidence-backed investment theses streamed live to a dynamic dashboard.",
+        skills: ["Python", "LangGraph", "LLMs", "AI Agents", "Financial Analysis", "RAG", "NLP"],
+        bgColor: "#ef4444",
+        image: isMobile ? equitymob : equitydesk,
+      },
+      {
         title: "SmartCV — AI Resume Builder",
         link: "https://smart-cv-an-ai-powered-resume-build.vercel.app/",
         description:
@@ -72,15 +81,6 @@ export default function Projects() {
         skills: ["Python", "PyTorch", "CNN", "LSTM", "Attention Mechanism", "MS-COCO", "Deep Learning"],
         bgColor: "#dc9317",
         image: isMobile ? imgcaption : imgcaption,
-      },
-      {
-        title: "Equity Research AI Agent",
-        link: "https://github.com/DataHack4-0/Ctrl--Alt--De-Dragon",
-        description:
-        "An agentic AI system performing automated equity research on Indian listed companies. LangGraph orchestrates specialized agents — news intelligence, knowledge graphs, and adversarial bull/bear analysis — to produce evidence-backed investment theses streamed live to a dynamic dashboard.",
-        skills: ["Python", "LangGraph", "LLMs", "AI Agents", "Financial Analysis", "RAG", "NLP"],
-        bgColor: "#ef4444",
-        image: isMobile ? equitymob : equitydesk,
       },
       {
         title: "eDNA Biodiversity Pipeline",

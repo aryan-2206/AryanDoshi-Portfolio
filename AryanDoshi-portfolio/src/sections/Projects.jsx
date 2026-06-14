@@ -11,8 +11,8 @@ import fmv from "../assets/fmv.jpg";
 import imgcaption from "../assets/imgcaption.png";
 import ednadesk from "../assets/ednadesk.jpeg";
 import ednamob from "../assets/ednamob.jpeg";
-import equitydesk from "../assets/equitydesk.png";
-import equitymob from "../assets/equitymob.png";
+// import equitydesk from "../assets/equitydesk.png";
+// import equitymob from "../assets/equitymob.png";
 import banquetdesk from "../assets/banquetdesk.png";
 import banquetmob from "../assets/banquetmob.jpeg";
 
@@ -73,15 +73,15 @@ export default function Projects() {
         bgColor: "#dc9317",
         image: isMobile ? imgcaption : imgcaption,
       },
-      {
-        title: "Equity Research AI Agent",
-        link: "https://github.com/DataHack4-0/Ctrl--Alt--De-Dragon",
-        description:
-        "An agentic AI system performing automated equity research on Indian listed companies. LangGraph orchestrates specialized agents — news intelligence, knowledge graphs, and adversarial bull/bear analysis — to produce evidence-backed investment theses streamed live to a dynamic dashboard.",
-        skills: ["Python", "LangGraph", "LLMs", "AI Agents", "Financial Analysis", "RAG", "NLP"],
-        bgColor: "#ef4444",
-        image: isMobile ? equitymob : equitydesk,
-      },
+      // {
+      //   title: "Equity Research AI Agent",
+      //   link: "https://github.com/DataHack4-0/Ctrl--Alt--De-Dragon",
+      //   description:
+      //   "An agentic AI system performing automated equity research on Indian listed companies. LangGraph orchestrates specialized agents — news intelligence, knowledge graphs, and adversarial bull/bear analysis — to produce evidence-backed investment theses streamed live to a dynamic dashboard.",
+      //   skills: ["Python", "LangGraph", "LLMs", "AI Agents", "Financial Analysis", "RAG", "NLP"],
+      //   bgColor: "#ef4444",
+      //   image: isMobile ? equitymob : equitydesk,
+      // },
       {
         title: "eDNA Biodiversity Pipeline",
         link: "https://github.com/d-mahi14/eDNA-project",

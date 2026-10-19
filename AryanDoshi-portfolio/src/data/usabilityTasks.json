@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "title": "Find AlphaAgent Project Details",
+    "scenario": "You want to learn more about the AlphaAgent project to understand its architecture and find its GitHub repository.",
+    "goal": "Locate the AlphaAgent project card and identify its GitHub repository link.",
+    "targetPath": "#projects",
+    "successCriteria": "User locates AlphaAgent and opens its GitHub repository link.",
+    "estimatedTimeSeconds": 15,
+    "difficulty": "Easy",
+    "hciPrinciple": "Recognition over Recall & Hick's Law"
+  },
+  {
+    "id": 2,
+    "title": "Download Resume",
+    "scenario": "A recruiter is viewing your portfolio and wants to download your resume for offline review.",
+    "goal": "Locate and access the resume download functionality.",
+    "targetPath": "#about",
+    "successCriteria": "User successfully initiates resume download",
+    "estimatedTimeSeconds": 10,
+    "difficulty": "Easy",
+    "hciPrinciple": "Fitts's Law"
+  },
+  {
+    "id": 3,
+    "title": "Search and Read Blog Article",
+    "scenario": "You're interested in reading about a specific topic covered in the blog section.",
+    "goal": "Navigate to the blog section, use the tag filter to find a relevant article, and read it.",
+    "targetPath": "#blog",
+    "successCriteria": "User filters by a tag and opens a blog article to read",
+    "estimatedTimeSeconds": 20,
+    "difficulty": "Medium",
+    "hciPrinciple": "Aesthetic & Minimalist Design, Progressive Disclosure"
+  },
+  {
+    "id": 4,
+    "title": "Toggle Dark Mode",
+    "scenario": "You're viewing the portfolio in light mode and prefer dark mode for better readability.",
+    "goal": "Switch the portfolio to dark mode using either the header button or keyboard shortcut.",
+    "targetPath": "#home",
+    "successCriteria": "User successfully toggles dark mode (via button or 'D' key)",
+    "estimatedTimeSeconds": 8,
+    "difficulty": "Easy",
+    "hciPrinciple": "Flexibility & Efficiency, WCAG Contrast"
+  },
+  {
+    "id": 5,
+    "title": "Submit Contact Form",
+    "scenario": "A potential employer wants to find the best way to contact you.",
+    "goal": "Locate the contact form, identify its required fields, and inspect its validation without sending a message.",
+    "targetPath": "#contact",
+    "successCriteria": "User identifies the required fields and can correct an invalid entry from the form feedback.",
+    "estimatedTimeSeconds": 30,
+    "difficulty": "Medium",
+    "hciPrinciple": "Error Prevention & Recovery"
+  }
+]

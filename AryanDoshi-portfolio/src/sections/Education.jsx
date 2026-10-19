@@ -1,46 +1,29 @@
 import React, { useRef, useEffect, useMemo } from "react";
 import { motion, useTransform, useScroll } from "framer-motion";
+import { useInView } from "../hooks/useInView";
+import { educations, academicStats } from "../data/content";
 
-const educations = [
-  {
-    desc: "Schooling",
-    title: "Gokuldham High School & Junior College",
-    period: "2012 - 2022",
-    grade: "92.83% (ICSE)",
-    courses: ['Physics', 'Chemistry', 'Mathematics', 'Computer Science', 'Social Studies']
-  },
-  {
-    desc: "Higher Secondary Education",
-    title: "Prakash College of Commerce and Science",
-    period: "2022 - 2024",
-    grade: "87.83% (HSC)",
-    courses: ['Physics', 'Chemistry', 'Mathematics', 'Computer Science']
-  },
-  {
-    desc: "Undergraduate Education",
-    title: "Veermata Jijabai Technological Institute",
-    period: "B.Tech in Computer Engineering | 2024 - 2028",
-    grade: "8.53 CGPA (Currently in 3rd Year)",
-    courses: ['Data Structures And Algorithms', 'DBMS', 'Operating Systems', 'Artificial Intelligence', 'Linear Algebra', 'Discrete Mathematics', 'Linux']
-  }
-];
-
-/* ── Coursework pills — two size variants ── */
+/* ── Coursework pills ── */
 function CoursePills({ courses, compact = false }) {
   return (
-    <div className={compact ? "mt-2" : "mt-3"}>
-      <span className={`${compact ? "text-[9px]" : "text-xs"} text-gray-400 uppercase tracking-widest font-semibold`}>
+    <div style={{ marginTop: compact ? "0.4rem" : "0.6rem" }}>
+      <span style={{ fontSize: compact ? "0.62rem" : "0.72rem", color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em", fontFamily: "var(--font-mono)" }}>
         Coursework
       </span>
-      <div className={`flex flex-wrap ${compact ? "gap-1 mt-1" : "gap-1.5 mt-1.5"}`}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: compact ? "0.2rem" : "0.3rem", marginTop: "0.3rem" }}>
         {courses.map((course, i) => (
           <span
             key={i}
-            className={
-              compact
-                ? "text-[9px] px-1.5 py-0.5 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-300 font-medium"
-                : "text-xs px-2.5 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-300 font-medium"
-            }
+            style={{
+              fontSize: compact ? "0.62rem" : "0.72rem",
+              padding: compact ? "0.1rem 0.4rem" : "0.2rem 0.55rem",
+              borderRadius: 999,
+              background: "rgba(0,217,255,0.1)",
+              border: "1px solid rgba(0,217,255,0.25)",
+              color: "var(--accent)",
+              fontFamily: "var(--font-mono)",
+              fontWeight: 500,
+            }}
           >
             {course}
           </span>
@@ -50,96 +33,141 @@ function CoursePills({ courses, compact = false }) {
   );
 }
 
-/* ══════════════════════════════════════
-   DESKTOP CARD
-   ══════════════════════════════════════
-   3-keyframe transforms guarantee:
-   • Scroll DOWN → cards appear left-to-right
-   • Scroll UP   → cards disappear right-to-left
-   • Card 0 vanishes exactly when section un-sticks (start=0)
-
-   FIX: removed maxWidth:"28vw" (was squeezing cards on mid-size screens
-   and pushing them taller, causing overflow-clip on the sticky container).
-   FIX: sticky container no longer has overflow-hidden (which was clipping
-   the 3rd card that extends above the timeline row).
-*/
+/* ── Desktop card ── */
 function DesktopCard({ edu, idx, start, end, scrollYProgress }) {
   const enterY = idx % 2 === 0 ? 44 : -44;
-
   const opacity = useTransform(scrollYProgress, [start, end, 1], [0, 1, 1]);
-  const y       = useTransform(scrollYProgress, [start, end, 1], [enterY, 0, 0]);
-  const scale   = useTransform(scrollYProgress, [start, end, 1], [0.86, 1, 1]);
+  const y = useTransform(scrollYProgress, [start, end, 1], [enterY, 0, 0]);
+  const scale = useTransform(scrollYProgress, [start, end, 1], [0.86, 1, 1]);
 
   return (
-    <div className="relative flex flex-1 justify-center items-center min-w-0">
-      {/* Glowing dot */}
+    <div style={{ position: "relative", flex: 1, display: "flex", justifyContent: "center", alignItems: "center", minWidth: 0 }}>
       <motion.div
-        className="z-10 w-6 h-6 rounded-full bg-white shadow-[0_0_14px_5px_rgba(255,255,255,0.5)]"
-        style={{ scale, opacity }}
+        style={{
+          scale,
+          opacity,
+          width: 12,
+          height: 12,
+          borderRadius: "50%",
+          background: "var(--accent)",
+          boxShadow: "0 0 12px 4px rgba(0,217,255,0.5)",
+          zIndex: 10,
+        }}
       />
-      {/* Vertical connector to card */}
       <motion.div
-        className={`absolute ${idx % 2 === 0 ? "-top-8" : "-bottom-8"} w-0.75 bg-white/40 rounded`}
-        style={{ height: 36, opacity }}
+        style={{
+          position: "absolute",
+          [idx % 2 === 0 ? "bottom" : "top"]: -8,
+          width: 1,
+          height: 36,
+          background: "rgba(0,217,255,0.35)",
+          opacity,
+        }}
       />
-      {/* Card — fixed 300px, no vw clamping that could squish it */}
       <motion.article
-        className={`absolute ${idx % 2 === 0 ? "bottom-12" : "top-12"} bg-gray-900/85 backdrop-blur-md border border-gray-700/60 rounded-2xl p-6 w-75 shadow-xl`}
-        style={{ opacity, y, scale }}
+        className="card"
+        style={{
+          position: "absolute",
+          [idx % 2 === 0 ? "bottom" : "top"]: 20,
+          opacity,
+          y,
+          scale,
+          width: 260,
+          padding: "1.25rem",
+          borderColor: "rgba(0,217,255,0.2)",
+        }}
       >
-        <p className="text-xs text-blue-400 font-semibold uppercase tracking-wider">{edu.desc}</p>
-        <h3 className="text-base font-bold mt-1 leading-snug">{edu.title}</h3>
-        <p className="text-xs text-gray-400 mt-1">{edu.period}</p>
-        <p className="text-sm font-bold text-blue-300 mt-1">{edu.grade}</p>
+        <p style={{ fontSize: "0.68rem", color: "var(--accent)", fontFamily: "var(--font-mono)", textTransform: "uppercase", letterSpacing: "0.08em" }}>{edu.desc}</p>
+        <h3 style={{ fontSize: "0.88rem", fontWeight: 700, marginTop: "0.3rem", lineHeight: 1.3, color: "var(--text-primary)" }}>{edu.title}</h3>
+        <p style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "0.25rem", fontFamily: "var(--font-mono)" }}>{edu.period}</p>
+        <p style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--accent)", marginTop: "0.3rem" }}>{edu.grade}</p>
         <CoursePills courses={edu.courses} />
       </motion.article>
     </div>
   );
 }
 
-/* ══════════════════════════════════════
-   MOBILE STICKY CARD
-   ══════════════════════════════════════
-   Scroll-progress driven (same 3-keyframe pattern as desktop).
-   Cards start invisible (opacity=0, scale=0.94, x=-18) so they don't
-   cause layout overflow even though they exist in normal flow.
-   The tiny compact size ensures all 3 fit in h-screen.
-*/
+/* ── Mobile card ── */
 function MobileStickyCard({ edu, start, end, scrollYProgress }) {
-  const opacity  = useTransform(scrollYProgress, [start, end, 1], [0, 1, 1]);
-  const x        = useTransform(scrollYProgress, [start, end, 1], [-18, 0, 0]);
-  const scale    = useTransform(scrollYProgress, [start, end, 1], [0.94, 1, 1]);
+  const opacity = useTransform(scrollYProgress, [start, end, 1], [0, 1, 1]);
+  const x = useTransform(scrollYProgress, [start, end, 1], [-18, 0, 0]);
+  const scale = useTransform(scrollYProgress, [start, end, 1], [0.94, 1, 1]);
   const dotScale = useTransform(scrollYProgress, [start, end, 1], [0, 1, 1]);
 
   return (
-    <div className="relative flex items-start">
-      {/* Timeline dot */}
+    <div style={{ position: "relative", display: "flex", alignItems: "flex-start" }}>
       <motion.div
-        className="absolute -left-5.75 top-3 z-10 w-5 h-5 rounded-full bg-white shadow-[0_0_10px_3px_rgba(255,255,255,0.5)] shrink-0"
-        style={{ scale: dotScale, opacity }}
+        style={{
+          position: "absolute",
+          left: -20,
+          top: 16,
+          width: 10,
+          height: 10,
+          borderRadius: "50%",
+          background: "var(--accent)",
+          boxShadow: "0 0 8px rgba(0,217,255,0.5)",
+          flexShrink: 0,
+          scale: dotScale,
+          opacity,
+        }}
       />
-      {/* Card */}
       <motion.article
-        className="bg-gray-900/85 backdrop-blur-md border border-gray-700/60 rounded-xl p-3 w-full shadow-lg"
-        style={{ opacity, x, scale }}
+        className="card"
+        style={{
+          opacity,
+          x,
+          scale,
+          width: "100%",
+          padding: "1rem",
+          borderColor: "rgba(0,217,255,0.2)",
+        }}
       >
-        <p className="text-[10px] text-blue-400 font-semibold uppercase tracking-wider leading-none">{edu.desc}</p>
-        <h3 className="text-[13px] font-bold mt-1 leading-snug">{edu.title}</h3>
-        <p className="text-[10px] text-gray-400 mt-0.5 leading-snug">{edu.period}</p>
-        <p className="text-xs font-bold text-blue-300 mt-0.5">{edu.grade}</p>
+        <p style={{ fontSize: "0.65rem", color: "var(--accent)", fontFamily: "var(--font-mono)", textTransform: "uppercase", letterSpacing: "0.08em" }}>{edu.desc}</p>
+        <h3 style={{ fontSize: "0.85rem", fontWeight: 700, marginTop: "0.2rem", lineHeight: 1.3, color: "var(--text-primary)" }}>{edu.title}</h3>
+        <p style={{ fontSize: "0.68rem", color: "var(--text-muted)", marginTop: "0.2rem", fontFamily: "var(--font-mono)" }}>{edu.period}</p>
+        <p style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--accent)", marginTop: "0.2rem" }}>{edu.grade}</p>
         <CoursePills courses={edu.courses} compact />
       </motion.article>
     </div>
   );
 }
 
-/* ══════════════════════════════════════
-   MAIN SECTION
-   ══════════════════════════════════════ */
+/* ── Academic stat cards ── */
+function StatCards() {
+  const [ref, visible] = useInView({ threshold: 0.1 });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={visible ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6 }}
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))",
+        gap: "0.75rem",
+        padding: "2rem clamp(1rem,5vw,2rem)",
+        maxWidth: 1200,
+        margin: "0 auto",
+        background: "var(--bg-0)",
+        borderTop: "1px solid var(--border)",
+      }}
+    >
+      {academicStats.map((s) => (
+        <div
+          key={s.label}
+          className="card"
+          style={{ padding: "1rem", textAlign: "center" }}
+        >
+          <div style={{ fontWeight: 800, fontSize: "1.2rem", color: "var(--accent)", fontFamily: "var(--font-mono)" }}>{s.value}</div>
+          <div style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "0.2rem", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
+        </div>
+      ))}
+    </motion.div>
+  );
+}
+
 export default function Education() {
   const sectionRef = useRef(null);
-
-  // Initialise from window immediately to avoid height flash on mobile
   const [isMobile, setIsMobile] = React.useState(
     () => typeof window !== "undefined" ? window.innerWidth < 768 : false
   );
@@ -151,108 +179,110 @@ export default function Education() {
   }, []);
 
   const n = educations.length;
-
-  // Mobile gets 100vh per card; desktop 120vh per card
   const SCENE_HEIGHT_VH = isMobile ? 100 * n : 120 * n;
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
   });
 
-  // Cards appear sequentially in the first 50% of scroll:
-  //   card 0 → [0,     0.167]
-  //   card 1 → [0.167, 0.333]
-  //   card 2 → [0.333, 0.5  ]
-  // After 0.5 all cards stay visible (hold time).
-  // On the way back up they vanish right-to-left automatically. ✓
   const thresholds = useMemo(() =>
     educations.map((_, i) => ({
       start: i * (0.5 / n),
-      end:   (i + 1) * (0.5 / n),
+      end: (i + 1) * (0.5 / n),
     })), [n]);
 
-  // Desktop horizontal line: fills 0→100% in sync with cards appearing,
-  // retracts right-to-left on scroll up.
   const lineWidth = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"], { clamp: true });
-
-  // Mobile vertical line: same timing
   const mobileLineScaleY = useTransform(scrollYProgress, [0, 0.5], [0, 1], { clamp: true });
 
   return (
-    <section id="education" className="relative bg-black text-white">
-      <div
-        ref={sectionRef}
-        style={{ height: `${SCENE_HEIGHT_VH}vh`, minHeight: "120vh" }}
-        className="relative"
+    <>
+      <section
+        id="education"
+        style={{ position: "relative", background: "var(--bg-0)", color: "var(--text-primary)" }}
       >
-        {/*
-          IMPORTANT: NO overflow-hidden on the sticky container.
-          Desktop cards are absolutely positioned above/below the timeline row and
-          overflow-hidden was clipping the 3rd card (VJTI). Cards start at opacity=0
-          so they're invisible before their animation window — no clipping needed.
-        */}
-        <div className="sticky top-0 h-screen flex flex-col">
-          <h2 className="text-4xl sm:text-5xl font-semibold mt-6 text-center">Education</h2>
+        <div ref={sectionRef} style={{ height: `${SCENE_HEIGHT_VH}vh`, minHeight: "120vh", position: "relative" }}>
+          <div style={{ position: "sticky", top: 0, height: "100vh", display: "flex", flexDirection: "column" }}>
 
-          <div className="flex flex-1 items-center justify-center px-4 pb-8">
+            {/* Header */}
+            <div style={{ padding: "2rem clamp(1rem,5vw,2rem) 0", maxWidth: 1200, margin: "0 auto", width: "100%" }}>
+              <p className="section-subtitle" style={{ marginBottom: "0.4rem" }}>// academic_journey</p>
+              <h2 className="section-title">
+                Education <span className="gradient-text">&amp; Academics</span>
+              </h2>
+            </div>
 
-            {/* ══ DESKTOP ══ */}
-            {!isMobile && (
-              <div className="relative w-full max-w-7xl">
-                {/* Horizontal timeline track */}
-                <div className="relative h-1.25 bg-white/15 rounded overflow-hidden">
-                  <motion.div
-                    className="absolute left-0 top-0 h-1.25 bg-white rounded"
-                    style={{ width: lineWidth }}
-                  />
-                </div>
-                {/* Cards */}
-                <div className="relative flex justify-between">
-                  {educations.map((edu, i) => (
-                    <DesktopCard
-                      key={i}
-                      edu={edu}
-                      idx={i}
-                      start={thresholds[i].start}
-                      end={thresholds[i].end}
-                      scrollYProgress={scrollYProgress}
+            <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 clamp(1rem,5vw,2rem) 2rem" }}>
+
+              {/* Desktop */}
+              {!isMobile && (
+                <div style={{ position: "relative", width: "100%", maxWidth: 1100 }}>
+                  <div style={{ position: "relative", height: 2, background: "var(--border)", borderRadius: 1, overflow: "hidden" }}>
+                    <motion.div
+                      style={{
+                        position: "absolute",
+                        left: 0,
+                        top: 0,
+                        height: "100%",
+                        width: lineWidth,
+                        background: "linear-gradient(90deg, var(--accent), var(--accent2))",
+                        borderRadius: 1,
+                      }}
                     />
-                  ))}
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between", position: "relative" }}>
+                    {educations.map((edu, i) => (
+                      <DesktopCard
+                        key={i}
+                        edu={edu}
+                        idx={i}
+                        start={thresholds[i].start}
+                        end={thresholds[i].end}
+                        scrollYProgress={scrollYProgress}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* ══ MOBILE (sticky, cards appear one-by-one via scroll progress) ══ */}
-            {isMobile && (
-              <div className="relative w-full max-w-sm">
-                {/* Vertical timeline track */}
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-white/15 rounded overflow-hidden">
-                  <motion.div
-                    className="absolute top-0 left-0 w-full bg-white rounded origin-top"
-                    style={{ scaleY: mobileLineScaleY, height: "100%" }}
-                  />
-                </div>
-
-                {/* Cards — in normal flow but start invisible; compact to fit h-screen */}
-                <div className="ml-8 flex flex-col gap-3">
-                  {educations.map((edu, i) => (
-                    <MobileStickyCard
-                      key={i}
-                      edu={edu}
-                      idx={i}
-                      start={thresholds[i].start}
-                      end={thresholds[i].end}
-                      scrollYProgress={scrollYProgress}
+              {/* Mobile */}
+              {isMobile && (
+                <div style={{ position: "relative", width: "100%", maxWidth: 420 }}>
+                  <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 2, background: "var(--border)", borderRadius: 1, overflow: "hidden" }}>
+                    <motion.div
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        background: "linear-gradient(to bottom, var(--accent), var(--accent2))",
+                        transformOrigin: "top",
+                        scaleY: mobileLineScaleY,
+                      }}
                     />
-                  ))}
+                  </div>
+                  <div style={{ marginLeft: "1.75rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                    {educations.map((edu, i) => (
+                      <MobileStickyCard
+                        key={i}
+                        edu={edu}
+                        start={thresholds[i].start}
+                        end={thresholds[i].end}
+                        scrollYProgress={scrollYProgress}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Academic stat cards below the sticky section */}
+      <StatCards />
+    </>
   );
 }

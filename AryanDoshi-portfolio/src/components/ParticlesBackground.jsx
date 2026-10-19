@@ -46,8 +46,14 @@ export default function ParticlesBackground() {
       }
     }
     function handleResize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const parent = canvas.parentElement;
+      if (parent) {
+        canvas.width = parent.offsetWidth;
+        canvas.height = parent.offsetHeight;
+      } else {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
       createParticles();
     }
     handleResize();
@@ -69,7 +75,15 @@ export default function ParticlesBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
     ></canvas>
   );
 }

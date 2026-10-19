@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "name": "Visibility of System Status",
+    "rule": "The system should always keep users informed about what is going on, through appropriate feedback within reasonable time.",
+    "location": "Navbar, Contact Form, Loading States",
+    "implementation": "Loading spinners on form submission, scroll progress indicators, active state on navigation items, success toasts after actions",
+    "severity": null,
+    "severityLabel": "Not assessed",
+    "beforeFix": "Not recorded yet. Add the observed issue after conducting the heuristic evaluation.",
+    "afterFix": "Not recorded yet. Document the implemented change after conducting the heuristic evaluation."
+  },
+  {
+    "id": 2,
+    "name": "Match Between System & Real World",
+    "rule": "The system should speak the users' language, with words, phrases and concepts familiar to the user, rather than system-oriented terms.",
+    "location": "Project Cards, Skills Section, About Section",
+    "implementation": "Natural language in project descriptions, familiar tech stack icons, relatable role descriptions, clear section headings",
+    "severity": null,
+    "severityLabel": "Not assessed",
+    "beforeFix": "Not recorded yet. Add the observed issue after conducting the heuristic evaluation.",
+    "afterFix": "Not recorded yet. Document the implemented change after conducting the heuristic evaluation."
+  },
+  {
+    "id": 3,
+    "name": "User Control & Freedom",
+    "rule": "Users often choose system functions by mistake and will need a clearly marked 'emergency exit' to leave the unwanted state.",
+    "location": "Modals, Command Palette, Overlay Menu",
+    "implementation": "Escape key closes modals, X buttons on all overlays, click outside to dismiss, cancel buttons in forms",
+    "severity": null,
+    "severityLabel": "Not assessed",
+    "beforeFix": "Not recorded yet. Add the observed issue after conducting the heuristic evaluation.",
+    "afterFix": "Not recorded yet. Document the implemented change after conducting the heuristic evaluation."
+  },
+  {
+    "id": 4,
+    "name": "Consistency & Standards",
+    "rule": "Users should not have to wonder whether different words, situations, or actions mean the same thing.",
+    "location": "Navigation, Card Components, Buttons",
+    "implementation": "Consistent card styling across projects/skills/blogs, uniform button hover states, consistent icon usage",
+    "severity": null,
+    "severityLabel": "Not assessed",
+    "beforeFix": "Not recorded yet. Add the observed issue after conducting the heuristic evaluation.",
+    "afterFix": "Not recorded yet. Document the implemented change after conducting the heuristic evaluation."
+  },
+  {
+    "id": 5,
+    "name": "Error Prevention",
+    "rule": "Even better than good error messages is a careful design which prevents a problem from occurring in the first place.",
+    "location": "Contact Form, Email Links, Project Modals",
+    "implementation": "Real-time email validation with regex, disabled submit until valid, character counters, clear required field indicators",
+    "severity": null,
+    "severityLabel": "Not assessed",
+    "beforeFix": "Not recorded yet. Add the observed issue after conducting the heuristic evaluation.",
+    "afterFix": "Not recorded yet. Document the implemented change after conducting the heuristic evaluation."
+  },
+  {
+    "id": 6,
+    "name": "Recognition over Recall",
+    "rule": "Minimize the user's memory load by making objects, actions, and options visible.",
+    "location": "Command Palette, Project Modals, Hero Section",
+    "implementation": "Fuzzy search command palette (Ctrl+K), visible project tech stack tags, quick access badges in hero, GitHub links prominently displayed",
+    "severity": null,
+    "severityLabel": "Not assessed",
+    "beforeFix": "Not recorded yet. Add the observed issue after conducting the heuristic evaluation.",
+    "afterFix": "Not recorded yet. Document the implemented change after conducting the heuristic evaluation."
+  },
+  {
+    "id": 7,
+    "name": "Flexibility & Efficiency of Use",
+    "rule": "Accelerators -- unseen by the novice user -- may often speed up the interaction for the expert user.",
+    "location": "Keyboard Shortcuts, Dark Mode Toggle, Command Palette",
+    "implementation": "Ctrl+K for command palette, 'D' for dark mode, '?' for HCI guide, Escape to dismiss, skip-to-content link",
+    "severity": null,
+    "severityLabel": "Not assessed",
+    "beforeFix": "Not recorded yet. Add the observed issue after conducting the heuristic evaluation.",
+    "afterFix": "Not recorded yet. Document the implemented change after conducting the heuristic evaluation."
+  },
+  {
+    "id": 8,
+    "name": "Aesthetic & Minimalist Design",
+    "rule": "Dialogues should not contain information which is irrelevant or rarely needed.",
+    "location": "All Sections, Card Components",
+    "implementation": "Clean card layouts, progressive disclosure via modals, no clutter, generous whitespace, focus on essential information",
+    "severity": null,
+    "severityLabel": "Not assessed",
+    "beforeFix": "Not recorded yet. Add the observed issue after conducting the heuristic evaluation.",
+    "afterFix": "Not recorded yet. Document the implemented change after conducting the heuristic evaluation."
+  },
+  {
+    "id": 9,
+    "name": "Help Users Recognize, Diagnose, Recover from Errors",
+    "rule": "Error messages should be expressed in plain language, precisely indicate the problem, and constructively suggest a solution.",
+    "location": "HCI evaluation tabs, Contact Form, Feedback Widget",
+    "implementation": "Specific validation messages for email format, clear error text in red, suggestions for correction, success states after valid input",
+    "severity": 3,
+    "severityLabel": "3 - Major",
+    "beforeFix": "Observed issue: Selecting the user-test or SUS tab caused a runtime rendering error, leaving the page blank without an actionable recovery message.",
+    "afterFix": "Imported the missing animation component, corrected the SUS item rendering, and made the portfolio content mount independently of the intro animation. Both panels now render in the browser."
+  },
+  {
+    "id": 10,
+    "name": "Help & Documentation",
+    "rule": "Even though it is better if the system can be used without documentation, it may be necessary to provide help and documentation.",
+    "location": "HCI Guide Modal, Section Headers, Contact Section",
+    "implementation": "HCI Guide modal with keyboard shortcuts (opened via '?'), clear section labels, contact information prominently displayed",
+    "severity": null,
+    "severityLabel": "Not assessed",
+    "beforeFix": "Not recorded yet. Add the observed issue after conducting the heuristic evaluation.",
+    "afterFix": "Not recorded yet. Document the implemented change after conducting the heuristic evaluation."
+  }
+]
